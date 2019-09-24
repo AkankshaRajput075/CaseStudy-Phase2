@@ -77,7 +77,6 @@ public class PatientControllerTest {
     final ResponseEntity<Patient> response = patientcontroller.getPatientById(11);
 
     if(response.getStatusCode() == HttpStatus.NOT_FOUND) {
-      // assertEquals(response.getBody(), );
       assertEquals(null, actual);
     }
   }

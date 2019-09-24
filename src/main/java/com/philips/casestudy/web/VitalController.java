@@ -10,13 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.philips.casestudy.domain.MonitoringVitals;
 import com.philips.casestudy.service.PatientService;
-import com.philips.casestudy.service.VitalServiceRandom;
+import com.philips.casestudy.service.VitalServiceRandomImpl;
 
 @RestController
 public class VitalController{
 
+
+  VitalServiceRandomImpl vitalService;
+
   @Autowired
-  VitalServiceRandom vitalService;
+  public void setVitalService(VitalServiceRandomImpl vitalService) {
+    this.vitalService = vitalService;
+  }
+
+
 
   @Autowired
   PatientService patientService;
@@ -25,7 +32,7 @@ public class VitalController{
 
   @CrossOrigin
   @GetMapping(value = "/monitor/{id}")
-  public MonitoringVitals getAllStations(@PathVariable("id") int patientId){
+  public MonitoringVitals getVitals(@PathVariable("id") int patientId){
 
     return vitalService.initialiseVitals();
   }

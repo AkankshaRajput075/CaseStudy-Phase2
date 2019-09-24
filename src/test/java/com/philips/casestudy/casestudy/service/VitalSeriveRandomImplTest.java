@@ -4,6 +4,7 @@
 package com.philips.casestudy.casestudy.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.mockito.Mockito;
 import com.philips.casestudy.dal.PulseRateDAO;
@@ -47,6 +48,37 @@ public class VitalSeriveRandomImplTest {
 
     final MonitoringVitals generatedVital=service.generateAlertingStream(vital);
     assertEquals(generatedVital, vital);
+
+  }
+
+  @Test
+  public void generateRandomIntegerForVitalsIsTrue()
+  {
+    final VitalServiceRandomImpl service=new VitalServiceRandomImpl();
+
+    final VitalServiceRandomImpl serviceDummy=Mockito.mock(VitalServiceRandomImpl.class);
+
+    Mockito.when(serviceDummy.generateRandomIntegerForVitals(Mockito.anyInt(), Mockito.anyInt())).thenReturn(76);
+
+    final int reading=service.generateRandomIntegerForVitals(74, 86);
+
+    assertNotNull(reading);
+
+
+  }
+
+  @Test
+  public void generateRandomDoubleForVitalsIsTrue()
+  {
+    final VitalServiceRandomImpl service=new VitalServiceRandomImpl();
+
+    final VitalServiceRandomImpl serviceDummy=Mockito.mock(VitalServiceRandomImpl.class);
+
+    Mockito.when(serviceDummy.generateRandomDoubleForVitals(Mockito.anyDouble(), Mockito.anyDouble())).thenReturn(76.00);
+
+    final double reading=service.generateRandomDoubleForVitals(74.00, 86.00);
+
+    assertNotNull(reading);
 
   }
 
