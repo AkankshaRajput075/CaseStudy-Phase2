@@ -44,7 +44,6 @@ public class BedController {
       return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
     catch(final Exception e) {
-      e.printStackTrace();
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }

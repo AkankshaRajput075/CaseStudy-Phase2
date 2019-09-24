@@ -9,11 +9,11 @@ import com.philips.casestudy.domain.Patient;
 
 public class PatientDTO {
 
-  int id;
-  String name;
-  int age;
-  String phoneNumber;
-  Bed bed;
+  int patientId;
+  String patientName;
+  int patientAge;
+  String patientPhoneNumber;
+  Bed bedAllocate;
 
 
   public PatientDTO() {
@@ -28,39 +28,39 @@ public class PatientDTO {
 
   public PatientDTO(String name,int age,String phoneNumber)
   {
-    this.age=age;
-    this.name=name;
-    this.phoneNumber=phoneNumber;
+    this.patientAge=age;
+    this.patientName=name;
+    this.patientPhoneNumber=phoneNumber;
   }
   public int getId() {
-    return id;
+    return patientId;
   }
   public void setId(int id) {
-    this.id = id;
+    this.patientId = id;
   }
   public String getName() {
-    return name;
+    return patientName;
   }
   public void setName(String name) {
-    this.name = name;
+    this.patientName = name;
   }
   public int getAge() {
-    return age;
+    return patientAge;
   }
   public void setAge(int age) {
-    this.age = age;
+    this.patientAge = age;
   }
   public String getPhoneNumber() {
-    return phoneNumber;
+    return patientPhoneNumber;
   }
   public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+    this.patientPhoneNumber = phoneNumber;
   }
   public Bed getBed() {
-    return bed;
+    return bedAllocate;
   }
   public void setBed(Bed bed) {
-    this.bed = bed;
+    this.bedAllocate = bed;
   }
 
   public Patient changeDTOToEntity(PatientDTO pat)
