@@ -17,6 +17,7 @@ public class PulseRate {
 
 
 
+
   public static int getLowestPulseRate() {
     return LOWEST_PULSE_RATE;
   }
