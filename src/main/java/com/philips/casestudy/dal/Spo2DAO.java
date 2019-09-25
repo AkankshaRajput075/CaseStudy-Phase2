@@ -4,7 +4,6 @@
 package com.philips.casestudy.dal;
 
 import org.springframework.stereotype.Repository;
-import com.philips.casestudy.domain.MonitorStatus;
 import com.philips.casestudy.domain.MonitoringVitals;
 import com.philips.casestudy.domain.Spo2;
 
@@ -12,29 +11,25 @@ import com.philips.casestudy.domain.Spo2;
 public class Spo2DAO implements MonitoringVitalsDAO{
 
   @Override
-  public MonitoringVitals vitalChecker(MonitoringVitals vitals) {
+  public MonitoringVitals setVitalStatus(MonitoringVitals vitals) {
 
-    final Spo2 spo2=vitals.getSpo2();
+    vitals.getSpo2().setResult(checkRange(vitals.getSpo2().getReading()));
 
-    if (checkRange(spo2.getReading(),Spo2.getUpperHealthyReading())) {
-      spo2.setResult(MonitorStatus.getStatusByIndex(6));
-    } else if (checkRange(spo2.getReading(),Spo2.getUpperAcceptableReading())) {
-      spo2.setResult(MonitorStatus.getStatusByIndex(2));
-    } else if (checkRange(spo2.getReading(),Spo2.getLowerAcceptableReading())) {
-      spo2.setResult(MonitorStatus.getStatusByIndex(2));
-    } else if (checkRange(spo2.getReading(),Spo2.getLowerUnsafeLevelReading())) {
-      spo2.setResult(MonitorStatus.getStatusByIndex(1));
-    } else {
-      spo2.setResult(MonitorStatus.getStatusByIndex(0));
-    }
 
     return vitals;
   }
 
 
   @Override
-  public boolean checkRange(double currentspo2Reading,double fixedspo2Reading)
+  public String checkRange(double currentpulseReading)
   {
-    return currentspo2Reading>=fixedspo2Reading;
+    for(final Double checkPointReading:Spo2.getSpo2MonitorStatus().keySet())
+    {
+      if(currentpulseReading<=checkPointReading)
+      {
+        return Spo2.getSpo2MonitorStatus().get(checkPointReading);
+      }
+    }
+    return null;
   }
 }

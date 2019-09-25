@@ -4,7 +4,6 @@
 package com.philips.casestudy.dal;
 
 import org.springframework.stereotype.Repository;
-import com.philips.casestudy.domain.MonitorStatus;
 import com.philips.casestudy.domain.MonitoringVitals;
 import com.philips.casestudy.domain.Temperature;
 
@@ -12,40 +11,23 @@ import com.philips.casestudy.domain.Temperature;
 public class TemperatureDAO implements MonitoringVitalsDAO{
 
   @Override
-  public MonitoringVitals vitalChecker(MonitoringVitals vitals) {
+  public MonitoringVitals setVitalStatus(MonitoringVitals vitals) {
 
-    final Temperature temperature=vitals.getTemperature();
-
-    if(checkRange(temperature.getReading(),Temperature.getMinFeverValue())) {
-      temperature.setResult(MonitorStatus.getStatusByIndex(0));
-    }
-    else if (checkRange(temperature.getReading(),Temperature.getLowerNormalValue())) {
-      temperature.setResult(MonitorStatus.getStatusByIndex(1));
-    }
-    else if (checkRange(temperature.getReading(),Temperature.getUpperNormalValue()) ){
-      temperature.setResult(MonitorStatus.getStatusByIndex(2));
-    }
-    else if (checkRange(temperature.getReading(),Temperature.getUpperAcceptableFeverReading())) {
-      temperature.setResult(MonitorStatus.getStatusByIndex(3));
-    }
-    else if (checkRange(temperature.getReading(),Temperature.getUpperConcernFeverReading())) {
-      temperature.setResult(MonitorStatus.getStatusByIndex(4));
-    }
-    else if (checkRange(temperature.getReading(),Temperature.getMaxFeverValue())) {
-      temperature.setResult(MonitorStatus.getStatusByIndex(5));
-    }
-    else
-    {
-      temperature.setResult(MonitorStatus.getStatusByIndex(6));
-    }
+    vitals.getTemperature().setResult(checkRange(vitals.getTemperature().getReading()));
 
     return vitals;
   }
 
   @Override
-  public boolean checkRange(double currenttemperatureReading,double fixedtemperatureReading)
+  public String checkRange(double currentpulseReading)
   {
-    return currenttemperatureReading<=fixedtemperatureReading;
+    for(final Double checkPointReading:Temperature.getTemperatureMonitorStatus().keySet())
+    {
+      if(currentpulseReading<=checkPointReading)
+      {
+        return Temperature.getTemperatureMonitorStatus().get(checkPointReading);
+      }
+    }
+    return null;
   }
-
 }

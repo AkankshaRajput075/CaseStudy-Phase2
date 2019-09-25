@@ -3,14 +3,14 @@
  */
 package com.philips.casestudy.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Spo2{
 
   String result;
   private double reading;
-  private static final double  UPPER_HEALTHY_READING = 100;
-  private static final double  UPPER_ACCEPTABLE_READING= 95;
-  private static final double  LOWER_ACCEPTABLE_READING= 90;
-  private static final double  LOWER_UNSAFE_LEVEL_READING= 70;
+  static Map<Double, String> spo2MonitorStatus= new HashMap<>();
   String vitalName = "Spo2";
 
   public Spo2() {
@@ -19,6 +19,12 @@ public class Spo2{
   public Spo2(double reading) {
     this.reading = reading;
     result = null;
+
+    spo2MonitorStatus.put((double)65,"undetectably low reading");
+    spo2MonitorStatus.put((double)70,"low reading - Care Needed");
+    spo2MonitorStatus.put((double)90,"Normal");
+    spo2MonitorStatus.put((double)100,"Device Not Calibrated to measure such high values");
+
   }
 
 
@@ -39,20 +45,14 @@ public class Spo2{
     return vitalName;
   }
 
-  public static double getUpperHealthyReading() {
-    return UPPER_HEALTHY_READING;
+
+
+  public static Map<Double, String> getSpo2MonitorStatus() {
+    return spo2MonitorStatus;
   }
 
-  public static double getUpperAcceptableReading() {
-    return UPPER_ACCEPTABLE_READING;
-  }
-
-  public static double getLowerAcceptableReading() {
-    return LOWER_ACCEPTABLE_READING;
-  }
-
-  public static double getLowerUnsafeLevelReading() {
-    return LOWER_UNSAFE_LEVEL_READING;
+  public static void setSpo2MonitorStatus(Map<Double, String> spo2MonitorStatus) {
+    Spo2.spo2MonitorStatus = spo2MonitorStatus;
   }
 
   public void setResult(String result) {

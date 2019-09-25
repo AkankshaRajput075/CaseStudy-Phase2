@@ -5,7 +5,6 @@
 package com.philips.casestudy.dal;
 
 import org.springframework.stereotype.Repository;
-import com.philips.casestudy.domain.MonitorStatus;
 import com.philips.casestudy.domain.MonitoringVitals;
 import com.philips.casestudy.domain.PulseRate;
 
@@ -15,39 +14,24 @@ public class PulseRateDAO implements MonitoringVitalsDAO{
 
 
   @Override
-  public MonitoringVitals vitalChecker(MonitoringVitals vitals) {
-    final PulseRate pulseRate=vitals.getPulseRate();
-    if( checkRange(pulseRate.getReading(),PulseRate.getLowestPulseRate()))
-    {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(0));
-    }
-    else if(checkRange(pulseRate.getReading(),PulseRate.getLowestSleepingRate())) {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(1));
+  public MonitoringVitals setVitalStatus(MonitoringVitals vitals) {
 
-    }
-    else if(checkRange(pulseRate.getReading(),PulseRate.getUpperSleepingRate())) {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(2));
-    }
-    else if(checkRange(pulseRate.getReading(),PulseRate.getUpperRestingRate())) {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(2));
-    }
-    else if(checkRange(pulseRate.getReading(),PulseRate.getUpperExcerciseRate())) {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(2));
-    }
-    else if(checkRange(pulseRate.getReading(),PulseRate.getHighestPulseRate())) {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(3));
-    }
-    else {
-      pulseRate.setResult(MonitorStatus.getStatusByIndex(6));
-    }
+
+    vitals.getPulseRate().setResult(checkRange(vitals.getPulseRate().getReading()));
 
     return vitals;
   }
 
   @Override
-  public boolean checkRange(double currentpulseReading,double fixedpulseReading)
+  public String checkRange(double currentpulseReading)
   {
-    return currentpulseReading<=fixedpulseReading;
+    for(final Double checkPointReading:PulseRate.getPulseMonitorStatus().keySet())
+    {
+      if(currentpulseReading<=checkPointReading)
+      {
+        return PulseRate.getPulseMonitorStatus().get(checkPointReading);
+      }
+    }
+    return null;
   }
-
 }

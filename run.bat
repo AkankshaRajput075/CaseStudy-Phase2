@@ -1,4 +1,2 @@
-call mvn clean
-call mvn package
-call simian.bat
+call mvn jacoco:report
 pause
