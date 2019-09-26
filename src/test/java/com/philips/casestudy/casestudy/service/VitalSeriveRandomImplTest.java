@@ -40,9 +40,9 @@ public class VitalSeriveRandomImplTest {
     vital.getSpo2().setResult("Normal");
     vital.getTemperature().setResult("Normal");
 
-    Mockito.when(pulseRateDummy.vitalChecker(Mockito.any(MonitoringVitals.class))).thenReturn(vital);
-    Mockito.when(spo2Dummy.vitalChecker(Mockito.any(MonitoringVitals.class))).thenReturn(vital);
-    Mockito.when(temperatureDummy.vitalChecker(Mockito.any(MonitoringVitals.class))).thenReturn(vital);
+    Mockito.when(pulseRateDummy.setVitalStatus(Mockito.any(MonitoringVitals.class))).thenReturn(vital);
+    Mockito.when(spo2Dummy.setVitalStatus(Mockito.any(MonitoringVitals.class))).thenReturn(vital);
+    Mockito.when(temperatureDummy.setVitalStatus(Mockito.any(MonitoringVitals.class))).thenReturn(vital);
 
     System.out.println(vital.getPulseRate().toString());
 

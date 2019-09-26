@@ -3,22 +3,42 @@
  */
 package com.philips.casestudy.domain;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public class Temperature {
 
   private double reading;
-  private static final double MIN_FEVER_VALUE=93;
-  private static final double LOWER_NORMAL_VALUE= 97;
-  private static final double UPPER_NORMAL_VALUE= 98.9;
-  private static final double UPPER_ACCEPTABLE_FEVER_READING= 100.5;
-  private static final double UPPER_CONCERN_FEVER_READING= 103.1;
-  private static final double MAX_FEVER_VALUE=108;
+
   String result;
   String vitalName = "Temperature";
+  static Map<Double, String> temperatureMonitorStatus= new TreeMap<>();
 
   public Temperature(double reading) {
     this.reading = reading;
-    result = null;
+    this.result = null;
+
+    temperatureMonitorStatus.put((double)92,"undetectably low reading");
+    temperatureMonitorStatus.put((double)97,"low reading - Care needed");
+    temperatureMonitorStatus.put(98.9,"Normal");
+    temperatureMonitorStatus.put(100.5,"High reading - Care needed");
+    temperatureMonitorStatus.put(103.1,"High reading - Extreme Care needed");
+    temperatureMonitorStatus.put((double)108,"High reading - Critical Care needed");
+    temperatureMonitorStatus.put((double)109,"Device Not Calibrated to measure such high values");
+
+
   }
+
+
+  public static Map<Double, String> getTemperatureMonitorStatus() {
+    return temperatureMonitorStatus;
+  }
+
+
+  public static void setTemperatureMonitorStatus(Map<Double, String> temperatureMonitorStatus) {
+    Temperature.temperatureMonitorStatus = temperatureMonitorStatus;
+  }
+
 
   public Temperature() {
 
@@ -39,29 +59,6 @@ public class Temperature {
     return vitalName;
   }
 
-  public static double getMinFeverValue() {
-    return MIN_FEVER_VALUE;
-  }
-
-  public static double getLowerNormalValue() {
-    return LOWER_NORMAL_VALUE;
-  }
-
-  public static double getUpperNormalValue() {
-    return UPPER_NORMAL_VALUE;
-  }
-
-  public static double getUpperAcceptableFeverReading() {
-    return UPPER_ACCEPTABLE_FEVER_READING;
-  }
-
-  public static double getUpperConcernFeverReading() {
-    return UPPER_CONCERN_FEVER_READING;
-  }
-
-  public static double getMaxFeverValue() {
-    return MAX_FEVER_VALUE;
-  }
 
   public void setReading(double reading) {
     this.reading = reading;

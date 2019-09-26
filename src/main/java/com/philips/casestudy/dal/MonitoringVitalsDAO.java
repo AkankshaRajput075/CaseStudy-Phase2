@@ -7,8 +7,8 @@ import com.philips.casestudy.domain.MonitoringVitals;
 
 public interface MonitoringVitalsDAO  {
 
-  public MonitoringVitals vitalChecker(MonitoringVitals vitals);
+  public MonitoringVitals setVitalStatus(MonitoringVitals vitals);
 
-  public boolean checkRange(double currentReading,double fixedReading);
+  public String checkRange(double currentReading);
 
 }

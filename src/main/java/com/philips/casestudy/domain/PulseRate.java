@@ -3,48 +3,42 @@
  */
 package com.philips.casestudy.domain;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public class PulseRate {
 
   int reading;
   String result;
-  private static final int LOWEST_PULSE_RATE=30;
-  private static final int LOWEST_SLEEPING_RATE = 40;
-  private static final int UPPER_SLEEPING_RATE= 60;
-  private static final int UPPER_RESTING_RATE= 100;
-  private static final int  UPPER_EXCERCISE_RATE= 220;
-  private static final int HIGHEST_PULSE_RATE=254;
+
+  static Map<Double, String> pulseMonitorStatus= new TreeMap<>();
+
+
   String vitalName = "PulseRate";
 
 
 
-
-  public static int getLowestPulseRate() {
-    return LOWEST_PULSE_RATE;
+  public static Map<Double, String> getPulseMonitorStatus() {
+    return pulseMonitorStatus;
   }
 
-  public static int getLowestSleepingRate() {
-    return LOWEST_SLEEPING_RATE;
+  public static void setPulseMonitorStatus(Map<Double, String> pulseMonitorStatus) {
+    PulseRate.pulseMonitorStatus = pulseMonitorStatus;
   }
 
-  public static int getUpperSleepingRate() {
-    return UPPER_SLEEPING_RATE;
-  }
 
-  public static int getUpperRestingRate() {
-    return UPPER_RESTING_RATE;
-  }
 
-  public static int getUpperExcerciseRate() {
-    return UPPER_EXCERCISE_RATE;
-  }
-
-  public static int getHighestPulseRate() {
-    return HIGHEST_PULSE_RATE;
-  }
-
-  public PulseRate(int reading) { // constructor
+  public PulseRate(int reading) {
     this.reading = reading;
-    result = null;
+    this.result=null;
+    pulseMonitorStatus.put((double)28,"undetectably low reading");
+    pulseMonitorStatus.put((double)40,"low reading - Care needed");
+    pulseMonitorStatus.put((double)220,"Normal");
+    pulseMonitorStatus.put((double)254,"High reading - Care needed");
+    pulseMonitorStatus.put((double)257,"Device not calibrated to measure such high values");
+
+
+
   }
 
   public PulseRate() {

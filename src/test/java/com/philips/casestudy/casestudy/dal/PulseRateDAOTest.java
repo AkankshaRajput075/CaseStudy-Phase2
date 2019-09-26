@@ -4,6 +4,7 @@
 package com.philips.casestudy.casestudy.dal;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 import com.philips.casestudy.dal.MonitoringVitalsDAO;
 import com.philips.casestudy.dal.PulseRateDAO;
@@ -20,16 +21,11 @@ public class PulseRateDAOTest {
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
-
-    final PulseRate pulseRate=new PulseRate();
+    final PulseRate pulseRate=new PulseRate(27);
     final Spo2 spo2=new Spo2();
     final Temperature temperature=new Temperature();
-    pulseRate.setReading(29);
-
     final MonitoringVitals vitals=new MonitoringVitals(pulseRate,spo2,temperature);
-
-    dao.vitalChecker(vitals);
-    assertEquals("undetectably low reading",vitals.getPulseRate().getResult());
+    assertEquals("undetectably low reading",dao.setVitalStatus(vitals).getPulseRate().getResult());
 
   }
 
@@ -39,15 +35,14 @@ public class PulseRateDAOTest {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
 
-    final PulseRate pulseRate=new PulseRate();
+    final PulseRate pulseRate=new PulseRate(39);
     final Spo2 spo2=new Spo2();
     final Temperature temperature=new Temperature();
-    pulseRate.setReading(39);
+
 
     final MonitoringVitals vitals=new MonitoringVitals(pulseRate,spo2,temperature);
 
-    dao.vitalChecker(vitals);
-    assertEquals("low reading - Care needed",vitals.getPulseRate().getResult());
+    assertEquals("low reading - Care needed",dao.setVitalStatus(vitals).getPulseRate().getResult());
 
   }
 
@@ -58,15 +53,13 @@ public class PulseRateDAOTest {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
 
-    final PulseRate pulseRate=new PulseRate();
+    final PulseRate pulseRate=new PulseRate(59);
     final Spo2 spo2=new Spo2();
     final Temperature temperature=new Temperature();
-    pulseRate.setReading(59);
 
     final MonitoringVitals vitals=new MonitoringVitals(pulseRate,spo2,temperature);
 
-    dao.vitalChecker(vitals);
-    assertEquals("Normal",vitals.getPulseRate().getResult());
+    assertEquals("Normal",dao.setVitalStatus(vitals).getPulseRate().getResult());
 
   }
 
@@ -77,15 +70,13 @@ public class PulseRateDAOTest {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
 
-    final PulseRate pulseRate=new PulseRate();
+    final PulseRate pulseRate=new PulseRate(253);
     final Spo2 spo2=new Spo2();
     final Temperature temperature=new Temperature();
-    pulseRate.setReading(253);
 
     final MonitoringVitals vitals=new MonitoringVitals(pulseRate,spo2,temperature);
 
-    dao.vitalChecker(vitals);
-    assertEquals("High reading - Care needed",vitals.getPulseRate().getResult());
+    assertEquals("High reading - Care needed",dao.setVitalStatus(vitals).getPulseRate().getResult());
 
   }
 
@@ -96,23 +87,31 @@ public class PulseRateDAOTest {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
 
-    final PulseRate pulseRate=new PulseRate();
+    final PulseRate pulseRate=new PulseRate(257);
     final Spo2 spo2=new Spo2();
     final Temperature temperature=new Temperature();
-    pulseRate.setReading(255);
 
     final MonitoringVitals vitals=new MonitoringVitals(pulseRate,spo2,temperature);
 
-    dao.vitalChecker(vitals);
-    assertEquals("Device not calibrated to measure such high values",vitals.getPulseRate().getResult());
+    assertEquals("Device not calibrated to measure such high values", dao.setVitalStatus(vitals).getPulseRate().getResult());
 
   }
 
+
   @Test
-  public void checkRangeReturnTrue()
+  public void vitalCheckerreturnNull()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
-    assertEquals(true,dao.checkRange(50, 54));
+
+    final PulseRate pulseRate=new PulseRate(258);
+    final Spo2 spo2=new Spo2();
+    final Temperature temperature=new Temperature();
+
+    final MonitoringVitals vitals=new MonitoringVitals(pulseRate,spo2,temperature);
+
+    assertNull(dao.setVitalStatus(vitals).getPulseRate().getResult());
+
   }
+
 }

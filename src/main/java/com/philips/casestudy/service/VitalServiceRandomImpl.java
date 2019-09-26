@@ -69,9 +69,9 @@ public class VitalServiceRandomImpl implements VitalServiceRandom {
   @Override
   public MonitoringVitals generateAlertingStream(MonitoringVitals vital) {
 
-    vital=pulserateDAO.vitalChecker(vital);
-    vital=spo2Dao.vitalChecker(vital);
-    vital=tempDAO.vitalChecker(vital);
+    vital=pulserateDAO.setVitalStatus(vital);
+    vital=spo2Dao.setVitalStatus(vital);
+    vital=tempDAO.setVitalStatus(vital);
 
     return vital;
   }
