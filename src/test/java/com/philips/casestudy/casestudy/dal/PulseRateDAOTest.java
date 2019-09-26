@@ -17,7 +17,7 @@ public class PulseRateDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnUndetectablelowReading()
+  public void pulseRateVitalResultSetAsUndetectablelowReading()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
@@ -30,7 +30,7 @@ public class PulseRateDAOTest {
   }
 
   @Test
-  public void vitalCheckerreturnlowreadingwithcareNeeded()
+  public void pulseRateVitalResultSetAslowreadingwithcareNeeded()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
@@ -48,7 +48,7 @@ public class PulseRateDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnNormal()
+  public void pulseRateVitalResultSetAsNormal()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
@@ -65,7 +65,7 @@ public class PulseRateDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnHighreadingCareneeded()
+  public void pulseRateVitalResultSetAsHighreadingCareneeded()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
@@ -82,7 +82,7 @@ public class PulseRateDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnDeviceNotAbleToMeasure()
+  public void pulseRateVitalResultSetAsDeviceNotAbleToMeasure()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();
@@ -99,7 +99,7 @@ public class PulseRateDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnNull()
+  public void pulseRateVitalResultSetAsNull()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();

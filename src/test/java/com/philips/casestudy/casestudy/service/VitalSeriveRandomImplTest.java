@@ -52,7 +52,7 @@ public class VitalSeriveRandomImplTest {
   }
 
   @Test
-  public void generateRandomIntegerForVitalsIsTrue()
+  public void generateRandomIntegerForVitalsIsSuccessful()
   {
     final VitalServiceRandomImpl service=new VitalServiceRandomImpl();
 
@@ -68,7 +68,7 @@ public class VitalSeriveRandomImplTest {
   }
 
   @Test
-  public void generateRandomDoubleForVitalsIsTrue()
+  public void generateRandomDoubleForVitalsIsSuccessful()
   {
     final VitalServiceRandomImpl service=new VitalServiceRandomImpl();
 

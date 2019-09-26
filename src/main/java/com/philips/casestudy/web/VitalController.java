@@ -32,8 +32,9 @@ public class VitalController{
 
   @CrossOrigin
   @GetMapping(value = "/monitor/{id}")
-  public MonitoringVitals getVitals(@PathVariable("id") int patientId){
+  public MonitoringVitals getVitals(@PathVariable("id") int bedId){
 
     return vitalService.initialiseVitals();
+
   }
 }

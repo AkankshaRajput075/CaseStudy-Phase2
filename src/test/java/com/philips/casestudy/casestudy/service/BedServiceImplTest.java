@@ -15,7 +15,7 @@ import com.philips.casestudy.service.BedServiceImpl;
 public class BedServiceImplTest {
 
   @Test(expected=MyException.class)
-  public void deleteBedWhenPatientAssigned() throws MyException
+  public void deleteBedWhenPatientIsAlreadyAssigned() throws MyException
   {
     final BedServiceImpl service=new BedServiceImpl();
     final Bed toBeDeleted=new Bed(false);

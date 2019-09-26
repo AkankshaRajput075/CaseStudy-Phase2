@@ -18,7 +18,7 @@ public class TemperatureDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnUndetectablelowReading()
+  public void temperaturevitalResultSetUndetectablelowReading()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -35,7 +35,7 @@ public class TemperatureDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnlowreadingwithcareNeeded()
+  public void temperaturevitalResultSetlowreadingwithcareNeeded()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -53,7 +53,7 @@ public class TemperatureDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnNormal()
+  public void temperaturevitalResultSetNormal()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -71,7 +71,7 @@ public class TemperatureDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnHighReadingCareNeeded()
+  public void temperaturevitalResultSetHighReadingCareNeeded()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -88,7 +88,7 @@ public class TemperatureDAOTest {
   }
 
   @Test
-  public void vitalCheckerreturnHighReadingExtremeCareNeeded()
+  public void temperaturevitalResultSetHighReadingExtremeCareNeeded()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -105,7 +105,7 @@ public class TemperatureDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnHighReadingCriticalCareNeeded()
+  public void temperaturevitalResultSetHighReadingCriticalCareNeeded()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -121,7 +121,7 @@ public class TemperatureDAOTest {
   }
 
   @Test
-  public void vitalCheckerreturnDeviceNotAbleToMeasure()
+  public void temperaturevitalResultSetDeviceNotAbleToMeasure()
   {
 
     final MonitoringVitalsDAO dao=new TemperatureDAO();
@@ -138,7 +138,7 @@ public class TemperatureDAOTest {
 
 
   @Test
-  public void vitalCheckerreturnNull()
+  public void temperaturevitalResultSetNull()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();

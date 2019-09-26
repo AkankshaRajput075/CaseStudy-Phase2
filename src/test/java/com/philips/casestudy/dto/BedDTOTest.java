@@ -11,7 +11,7 @@ public class BedDTOTest {
 
 
   @Test
-  public void BedDtoToEntity()
+  public void BedDtoChangeToBedEntity()
   {
     final BedDTO bedDto=new BedDTO(true);
     final Bed bed=bedDto.changeDTOToEntity(bedDto);

@@ -18,7 +18,7 @@ public class Spo2DAOTest {
 
 
   @Test
-  public void vitalCheckerreturnUndetectableLowReading()
+  public void spo2vitalResultSetAsUndetectableLowReading()
   {
 
     final MonitoringVitalsDAO dao=new Spo2DAO();
@@ -38,7 +38,7 @@ public class Spo2DAOTest {
 
 
   @Test
-  public void vitalCheckerreturnNormal()
+  public void spo2vitalResultSetNormal()
   {
 
     final MonitoringVitalsDAO dao=new Spo2DAO();
@@ -57,7 +57,7 @@ public class Spo2DAOTest {
 
 
   @Test
-  public void vitalCheckerreturnLowReading()
+  public void spo2vitalResultSetLowReading()
   {
 
     final MonitoringVitalsDAO dao=new Spo2DAO();
@@ -74,7 +74,7 @@ public class Spo2DAOTest {
 
 
   @Test
-  public void vitalCheckerreturnDeviceCannotCallibrate()
+  public void spo2vitalResultSetDeviceCannotCallibrate()
   {
 
     final MonitoringVitalsDAO dao=new Spo2DAO();
@@ -89,7 +89,7 @@ public class Spo2DAOTest {
   }
 
   @Test
-  public void vitalCheckerreturnNull()
+  public void spo2vitalResultSetNull()
   {
 
     final MonitoringVitalsDAO dao=new PulseRateDAO();

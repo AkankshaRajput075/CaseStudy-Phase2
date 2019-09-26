@@ -11,7 +11,7 @@ import com.philips.casestudy.dto.PatientDTO;
 public class PatientDTOTest {
 
   @Test
-  public void PatientDtoToEntity()
+  public void patientDtoChangeTopatientEntity()
   {
     final PatientDTO patientDto=new PatientDTO("Anil",43,"9999999999");
     final Patient pat=patientDto.changeDTOToEntity(patientDto);

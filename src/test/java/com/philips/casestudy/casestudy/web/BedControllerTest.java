@@ -18,7 +18,7 @@ import com.philips.casestudy.web.BedController;
 public class BedControllerTest {
 
   @Test
-  public void addBed_ValidAdd() throws Exception {
+  public void addBedIfAvaliable() throws Exception {
     final BedController bedcontroller = new BedController();
     final BedService bedService = Mockito.mock(BedService.class);
     bedcontroller.setBedService(bedService);
@@ -38,7 +38,7 @@ public class BedControllerTest {
   }
 
   @Test
-  public void addBed_BeyondCapacityAdd() throws Exception {
+  public void addBedBeyondCapacityOfBeds() throws Exception {
 
     final BedController bedcontroller = new BedController();
     final BedService bedService = Mockito.mock(BedService.class);
